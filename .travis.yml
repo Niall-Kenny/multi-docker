@@ -1,0 +1,19 @@
+language: generic
+services:
+  - docker
+before-install:
+  - docker build -e CI=true -t niallkenny/react-test f ./client/Dockerfile.dev ./client
+script:
+  - docker run niallkenny/react-test npm test -- --coverage
+after_success:
+  - docker build -t niallkenny/multi-client ./client
+  - docker build -t niallkenny/multi-nginx ./nginx
+  - docker build -t niallkenny/multi-server ./server
+  - docker build -t niallkenny/multi-worker ./worker
+  # login in to docker cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push images to docker hub
+  - docker push niallkenny/multi-client
+  - docker push niallkenny/multi-nginx
+  - docker push niallkenny/multi-server
+  - docker push niallkenny/multi-worker
