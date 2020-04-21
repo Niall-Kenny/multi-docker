@@ -2,7 +2,7 @@ language: generic
 services:
   - docker
 before-install:
-  - docker build -t niallkenny/react-test f ./client/Dockerfile.dev ./client
+  - docker build -t niallkenny/react-test -f ./client/Dockerfile.dev ./client
 script:
   - docker run -e CI=true niallkenny/react-test npm test
 after_success:
