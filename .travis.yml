@@ -13,10 +13,10 @@ after_success:
   # login in to docker cli
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push images to docker hub
-  - docker push niallkenny/multi-client
-  - docker push niallkenny/multi-nginx
-  - docker push niallkenny/multi-server
-  - docker push niallkenny/multi-worker
+  - docker push niallkenny/multi-client:latest
+  - docker push niallkenny/multi-nginx:latest
+  - docker push niallkenny/multi-server:latest
+  - docker push niallkenny/multi-worker:latest
 
 deploy:
   edge: true
