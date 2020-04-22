@@ -24,7 +24,7 @@
     },
     {
       "name": "nginx",
-      "image": "niallkenny/multi-nignx",
+      "image": "niallkenny/multi-nginx",
       "hostname": "nginx",
       "essential": true,
       "memory": 128,
