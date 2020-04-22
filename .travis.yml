@@ -1,7 +1,7 @@
 language: generic
 services:
   - docker
-before-install:
+before_install:
   - docker build -t niallkenny/react-test -f ./client/Dockerfile.dev ./client
 script:
   - docker run -e CI=true niallkenny/react-test npm test
@@ -17,3 +17,16 @@ after_success:
   - docker push niallkenny/multi-nginx
   - docker push niallkenny/multi-server
   - docker push niallkenny/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multiple-docker
+  env: MultipleDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-759778049992
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
