@@ -5,25 +5,29 @@
       "name": "client",
       "image": "niallkenny/multi-client",
       "hostname": "client",
-      "essential": "false"
+      "essential": "false",
+      "memory": 128
     },
     {
       "name": "server",
       "image": "niallkenny/multi-server",
       "hostname": "api",
-      "essential": "false"
+      "essential": "false",
+      "memory": 128
     },
     {
       "name": "worker",
       "image": "niallkenny/multi-worker",
       "hostname": "worker",
-      "essential": "false"
+      "essential": "false",
+      "memory": 128
     },
     {
       "name": "nginx",
       "image": "niallkenny/multi-nignx",
       "hostname": "nginx",
       "essential": true,
+      "memory": 128,
       "portMappings": [
         {
           "hostPort": "80",
